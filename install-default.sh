@@ -24,3 +24,5 @@ sudo apt-get install vim && curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh
 # install terminal
 sudo apt-get install guake terminator
 
+# install jenv
+curl -L -s get.jenv.io | bash
