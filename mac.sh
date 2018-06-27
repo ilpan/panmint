@@ -6,6 +6,10 @@
 # install required apps
 brew install axel curl wget zsh git
 
+# configure git
+git config --global user.name "ilpan"
+git config --global user.email "pna.dev@outlook.com"
+
 # install oh-my-zsh and other
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && \
     curl https://raw.githubusercontent.com/zakaziko99/agnosterzak-ohmyzsh-theme/master/agnosterzak.zsh-theme -o agnosterzak.zsh-theme && \
@@ -21,7 +25,7 @@ source virtualenv.sh
 brew install go dep
 
 # add some configurations on zshrc
-./configure-zshrc.py
+./configure_zshrc.py
 
 # install vim
 brew install vim && && curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh

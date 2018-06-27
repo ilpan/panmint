@@ -32,3 +32,5 @@ sh.echo("\nexport PATH=$PATH:$GOPATH/bin", _out=zf)
 sh.echo("\n\nexport LC_ALL=en_US.UTF-8", _out=zf)
 sh.echo("\nexport LANG=en_US.UTF-8", _out=zf)
 
+# close .zshrc
+zf.close()
