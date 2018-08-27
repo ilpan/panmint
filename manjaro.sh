@@ -19,7 +19,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 # install default software
 default_app() {
     # some useful app
-    sudo pacman -S axel htop tree 
+    sudo pacman -S axel htop tree speedtest-cli
 
     # powerline
     # sudo pacman -S powerline powerline-fonts 
@@ -41,8 +41,10 @@ default_app() {
         cd ~ && curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && \
         sh spf13-vim.sh && cd -
 
-    # sogoupinyin
-    sudo pacman -S fcitx fcitx-configtool fcitx-sogoupinyin
+    # docker
+    sudo pacman -S docker docker-compose
+    sudo usermod -a -G docker ${USER}
+
 }
 
 
@@ -83,17 +85,22 @@ jetbrains() {
 dev_app() {
     jetbrains
     sudo pacman -S visual-studio-code-bin
-
-    # docker
-    sudo pacman -S docker docker-compose
-    sudo usermod -a -G docker ${USER}
+    sudo pacman -S zeal muparser albert
 }
 
 
 # install multimedia & office software
 media_office_app() {
+    # theme
+    sudo pacman -S arc-kde capitaine-cursors numix-circle-icon-theme-git
+    # yaourt -S sddm-theme-kde-plasma-chili
+
+    # sogoupinyin
+    sudo pacman -S fcitx fcitx-configtool fcitx-sogoupinyin
+
     # media
     sudo pacman -S docky google-chrome netease-cloud-music
+    yaourt -S miredo xx-net
 
     # office
     sudo pacman -S remarkable typora wps-office
