@@ -13,7 +13,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
     sudo pacman -Syyu
 
     # yaourt
-    sudo pacman -S yaourt-gui-manjaro
+    sudo pacman -S yaourt-gui-manjaro aurvote
 }
 
 # install default software
@@ -29,7 +29,7 @@ default_app() {
     sudo pacman -S oh-my-zsh-git && \
         cp /usr/share/oh-my-zsh/zshrc ~/.zshrc && chsh -s `which zsh` && \
         curl -s https://raw.githubusercontent.com/zakaziko99/agnosterzak-ohmyzsh-theme/master/agnosterzak.zsh-theme -o agnosterzak.zsh-theme && \
-        mv agnosterzak.zsh-theme $ZSH_CUSTOM/themes/
+        mv agnosterzak.zsh-theme $ZSH_CUSTOM/themes/ # && yaourt -S zsh-dircolors-solarized-git
 
     # tmux
     sudo pacman -S tmux && \
@@ -42,9 +42,8 @@ default_app() {
         sh spf13-vim.sh && cd -
 
     # docker
-    sudo pacman -S docker docker-compose
-    sudo usermod -a -G docker ${USER}
-
+    sudo pacman -S docker docker-compose && \
+        sudo gpasswd -a $USER docker
 }
 
 
@@ -77,15 +76,15 @@ jetbrains() {
     IDEA=("intellij-idea-community-edition" "intellij-idea-ultimate-edition")
     PYCHARM=("pycharm-community-edition" "pycharm-professional")
 
-    sudo pacman -S $GOLAND
-    sudo pacman -S ${IDEA[2]}
-    sudo pacman -S ${PYCHARM[2]}
+    JETBRAINS=($GOLAND $IDEA[2] $PYCHARM[2])
+    sudo pacman -S $JETBRAINS
 }
 
 dev_app() {
     jetbrains
     sudo pacman -S visual-studio-code-bin
     sudo pacman -S zeal muparser albert
+    yaourt -S httpie mycli pgcli
 }
 
 
@@ -100,7 +99,7 @@ media_office_app() {
 
     # media
     sudo pacman -S docky google-chrome netease-cloud-music
-    yaourt -S miredo xx-net
+    # yaourt -S miredo xx-net
 
     # office
     sudo pacman -S remarkable typora wps-office
