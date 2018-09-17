@@ -12,8 +12,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
     sudo pacman -S archlinux-keyring
     sudo pacman -Syyu
 
-    # yaourt
-    sudo pacman -S yaourt-gui-manjaro aurvote
+    # aur
+    sudo pacman -S yaourt-gui-manjaro aurvote aurman pacui
 }
 
 # install default software
@@ -29,7 +29,7 @@ default_app() {
     sudo pacman -S oh-my-zsh-git && \
         cp /usr/share/oh-my-zsh/zshrc ~/.zshrc && chsh -s `which zsh` && \
         curl -s https://raw.githubusercontent.com/zakaziko99/agnosterzak-ohmyzsh-theme/master/agnosterzak.zsh-theme -o agnosterzak.zsh-theme && \
-        mv agnosterzak.zsh-theme $ZSH_CUSTOM/themes/ # && yaourt -S zsh-dircolors-solarized-git
+        mv agnosterzak.zsh-theme $ZSH_CUSTOM/themes/ 
 
     # tmux
     sudo pacman -S tmux && \
@@ -37,9 +37,7 @@ default_app() {
         cd .tmux && cp .tmux.conf ${HOME}/ && cd -
 
     # vim
-    sudo pacman -S vim && \
-        cd ~ && curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && \
-        sh spf13-vim.sh && cd -
+    sudo pacman -S vim && curl -sLf https://spacevim.org/install.sh | bash
 
     # docker
     sudo pacman -S docker docker-compose && \
@@ -84,7 +82,7 @@ dev_app() {
     jetbrains
     sudo pacman -S visual-studio-code-bin
     sudo pacman -S zeal muparser albert
-    yaourt -S httpie mycli pgcli
+    aurman -S httpie mycli pgcli
 }
 
 
@@ -92,14 +90,13 @@ dev_app() {
 media_office_app() {
     # theme
     sudo pacman -S arc-kde capitaine-cursors numix-circle-icon-theme-git
-    # yaourt -S sddm-theme-kde-plasma-chili
+    # aurman -S sddm-theme-kde-plasma-chili
 
     # sogoupinyin
     sudo pacman -S fcitx fcitx-configtool fcitx-sogoupinyin
 
     # media
     sudo pacman -S docky google-chrome netease-cloud-music
-    # yaourt -S miredo xx-net
 
     # office
     sudo pacman -S remarkable typora wps-office
